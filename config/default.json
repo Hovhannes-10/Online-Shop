@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://HD:hd123@cluster1-vnht5.mongodb.net/Shoping_list",
+    "jwtSecret": "sl_myJwtSecret"
+}

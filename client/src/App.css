@@ -1,0 +1,45 @@
+body { 
+    font-family:'Oswald', sans-serif!important;
+    color:black;
+}
+.text-titel {
+    font-family: 'Caveat Brush', cursive;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+}
+.button {
+    text-transform: capitalize;
+    font-size: 1rem;
+    background: transparent;
+    border:none ;
+    color: blanchedalmond;
+    background:transparent;
+    margin: 0.2rem 0.5rem 0.2rem 0
+}
+.nav-item {
+    color: white;
+    transition: all 1s ;
+    
+}
+.nav-item:hover{
+    text-decoration: none;
+    color: white;
+
+}
+.btn-black {
+    background:transparent;
+    text-transform: capitalize;
+    font-size: 0.8rem !important;
+    color:black;
+    border-radius: 0 !important;
+    border:0.1rem solid black !important;
+}
+.btn-black:hover {
+    background: black !important;
+    color: white;
+}
+.cart-icon {
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: yellow;
+}
