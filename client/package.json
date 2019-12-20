@@ -19,8 +19,6 @@
     "uuid": "^3.3.3"
   },
   "homepage": "https://Hovhannes-10.github.io/Online-Shop",
-
-  
   "scripts": {
     "start": "react-scripts start", 
     "build": "react-scripts build",
