@@ -4,12 +4,12 @@ import rootReducer from "./reducers";
 
 const initialState = {};
 const middleware = [thunk];
-
+const devTools = process.env.NODE_ENV === "production" ? null :window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() 
 const store = createStore(
     rootReducer,
     initialState,
     compose(
-        applyMiddleware(...middleware),
+        applyMiddleware(...middleware),devTools
         // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
         )
 )
