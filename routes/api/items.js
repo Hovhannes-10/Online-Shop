@@ -10,13 +10,14 @@ router.get('/', (req , res) =>{
 })
 
 router.post('/' ,(req , res) =>{
-    const file = req.files.file
-    file.mv(`${__dirname}../../../client/public/uploads/${file.name}`, err =>{
-      if (err) {
-        console.error(err)
-        return res.status(500).send(err);
-      }
-    })
+    const file = req.files.file;
+    // file.mv(`${__dirname}../../../client/public/uploads/${file.name}`, err =>{ 
+    //   if (err) {
+    //     console.error(err)
+    //     return res.status(500).send(err);
+    //   }
+    // })
+    file.mv(app.use(express.static(`client/public/uploads/${file.name}`)))
     const imgPath = `/uploads/${file.name}`
     const newItem = new Item({
         name: req.body.name,

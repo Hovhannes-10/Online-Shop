@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import { login } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions"
 import PropTypes from "prop-types"
+import { Link } from 'react-router-dom';
 class LoginModal extends Component {
     state = {
         modal: false,
@@ -66,13 +67,16 @@ class LoginModal extends Component {
     }
     render() {
         return(
-            <div>
-                <NavLink onClick = {this.toggle} href = "#">Login</NavLink>
+            <div className = 'form'>
+                {/* <NavLink onClick = {this.toggle} href = "#">Login</NavLink>
 
                 <Modal isOpen= {this.state.modal} toggle= {this.toggle}>
                     <ModalHeader toggle= {this.toggle}> Login </ModalHeader>
                     <ModalBody>
                         {this.state.msg? <Alert color="danger">{this.state.msg}</Alert>:null}
+                        
+                    </ModalBody>
+                </Modal> */}
                         <Form onSubmit ={ this.onSubmit }>
                             <FormGroup>
 								<Label for = 'email'>Email</Label>
@@ -93,8 +97,7 @@ class LoginModal extends Component {
                                 Login</Button>
                             </FormGroup>
                         </Form>
-                    </ModalBody>
-                </Modal>
+                        <Link to ='/register'>Creat an account</Link>
             </div>
             
         )

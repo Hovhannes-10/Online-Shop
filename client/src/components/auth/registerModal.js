@@ -67,15 +67,18 @@ class RegisterModal extends Component {
        
     }
     render() {
+        console.log(this.props.toggle)
         return(
-            <div>
-                <NavLink onClick = {this.toggle} href = "#">Register</NavLink>
-
-                <Modal isOpen= {this.state.modal} toggle= {this.toggle}>
+            <div className = "form">
+                {/* <NavLink onClick = {this.toggle} href = "#">Register</NavLink> */}
+                {/* <Modal isOpen= {this.state.modal} toggle= {this.toggle}>
                     <ModalHeader toggle= {this.toggle}> Register </ModalHeader>
                     <ModalBody>
                         {this.state.msg? <Alert color="danger">{this.state.msg}</Alert>:null}
-                        <Form onSubmit ={ this.onSubmit }>
+                        
+                    </ModalBody>
+                </Modal> */}
+                <Form onSubmit ={ this.onSubmit }>
                             <FormGroup>
                                 <Label for = 'name'>Name</Label>
                                 <Input 
@@ -101,10 +104,7 @@ class RegisterModal extends Component {
                                 <Button color= 'dark' style ={{marginTop:'2rem' } }block>
                                 Register</Button>
                             </FormGroup>
-
                         </Form>
-                    </ModalBody>
-                </Modal>
             </div>
             
         )

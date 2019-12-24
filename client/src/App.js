@@ -7,6 +7,8 @@ import ItemModal from "./components/itemModal"
 import Detalis from './components/Details';
 import Card from './components/Cart/Cart';
 import Default from './components/Default';
+import RegisterModal from './components/auth/registerModal';
+import LoginModal from './components/auth/loginModal';
 import {loadUser} from "./actions/authActions";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -28,6 +30,9 @@ class App extends Component {
             <Route path= '/admin' component = { ItemModal }/> 
             <Route path= '/detalis/:id' component = { Detalis }/>
             <Route path= '/card' component = { Card }/>
+            <Route path = '/register' component = { RegisterModal } />
+            <Route path = '/login' component = { LoginModal } />
+
             <Route component = { Default }/>
           </Switch>
         </Fragment>

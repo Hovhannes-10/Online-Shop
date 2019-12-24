@@ -27,7 +27,13 @@ class AppNavbar extends Component {
             isOpen: !this.state.isOpen
         })
     }
-    render() {
+    toggelFunction () {
+        // this.props.clearErrors();
+        this.setState({
+            modal:!this.state.modal
+        });
+    }
+    render() { 
         const { isAuthenticated, user } = this.props.auth;
         console.log(this.props.item)
         const authLinks = (
@@ -41,14 +47,21 @@ class AppNavbar extends Component {
                    <Logout/>
                 </NavItem>
             </Fragment>
-        );
+        )
         const guestLink =(
             <Fragment>
                 <NavItem >
-                    <RegisterModal />
+                    {/* <RegisterModal/> */}
+                    <Link to = '/register'> 
+                        <button className = 'button'>register</button>
+                     </Link>
                 </NavItem>
                 <NavItem className="nav-item">
-                    <LoginModal />
+                    <Link to = '/login'>
+                    <button className = 'button'>login</button> 
+                    </Link>
+                    {/* <LoginModal /> */}
+
                 </NavItem>
             </Fragment>
         )
@@ -56,34 +69,31 @@ class AppNavbar extends Component {
             <div>
                 <Navbar color ="danger" dark expand ="sm" className="mb-5">
                     <Container>
-
                         <NavbarBrand tag="span"><Link to = '/' className='nav-item'> Soping List</Link></NavbarBrand>
                         <NavbarToggler onClick = {this.toggle}></NavbarToggler>
                         <Collapse  isOpen ={this.state.isOpen} navbar>
                             <Nav className = "ml-auto align-items-center" navbar>
-                                <NavItem >
-                                    <Link to = '/card'>
+                                <NavItem >  
+                                    <Link to = "/card">
                                         <button className = 'button'>
                                             <span className = "mr-2">
                                                 <i className = 'fas fa-cart-plus'></i>
                                             </span>
                                             My Card
                                         </button>
-                                    </Link>
+                                    </Link> 
                                 </NavItem>
                                 {isAuthenticated ? authLinks :guestLink}
                             </Nav>
                         </Collapse>
                     </Container>
-                </Navbar>
-               
+                </Navbar>  
             </div>
         )
     }
 }
 
 const MapStateToProps = state => ({
-    auth:state.auth
-    
+    auth:state.auth    
 })
 export default connect(MapStateToProps , null)(AppNavbar)
