@@ -1,19 +1,14 @@
 import React ,{ Component,Fragment } from 'react';
 import Product from './Product'
 import Title from './Title'
-// import {ListGroup,ListGroupItem ,Container , Button} from 'reactstrap' ;
 import { connect } from 'react-redux';
 import { getItems,deleteItem } from '../actions/itemsActions';
 import PropTayps from "prop-types"
 
 class ShoppingList extends Component {
-    // componentDidMount()  {
-    //     this.props.getItems();  
-    // }
-    render() {   
-        console.log(this.props.item);
-        const { items } = this.props.item;
 
+    render() {   
+        const { items } = this.props.item;
         return(
             <Fragment>
                 <div className = "py-5">
@@ -27,8 +22,6 @@ class ShoppingList extends Component {
                     </div>
                 </div>
             </Fragment>
-            
-
         )
     }
 }

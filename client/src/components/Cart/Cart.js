@@ -18,17 +18,16 @@ export  class Cart extends Component {
 
     render() {
         const { isAuthenticated } = this.props.auth;
-        console.log(this.props)
         const value = this.props
         const { cart } = value
-        if (isAuthenticated) {
+        if ( isAuthenticated ) {
             if (cart.length > 0) {
                 return (
                     <Fragment>
                         <Title name="Your" title="Cart" />
                         <CartColumns />
                         <CartList value={ value }/>
-                        <CartTotals value = { value } history = {this.props.history}/>
+                        <CartTotals value = { value } history = { this.props.history }/>
                     </Fragment>
                 )
             }else {

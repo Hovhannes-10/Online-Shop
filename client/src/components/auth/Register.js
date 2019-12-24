@@ -1,14 +1,10 @@
 import React,{Component} from 'react';
 import {
     Button,
-    Modal,
-    ModalHeader,
-    ModalBody,
     Form,
     FormGroup,
     Label,
 	Input,
-    NavLink,
     Alert
 } from 'reactstrap';
 import { connect } from 'react-redux';
@@ -16,9 +12,8 @@ import { Redirect } from 'react-router-dom'
 import { register } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions"
 import PropTypes from "prop-types"
-class RegisterModal extends Component {
+class Register extends Component {
     state = {
-        modal: false,
         name: "",
         email:"",
         password:"",
@@ -31,7 +26,7 @@ class RegisterModal extends Component {
         clearErrors: PropTypes.func.isRequired
     }
     componentDidUpdate(prevProps) {
-        const { error,isAuthenticated } =this.props;
+        const { error } =this.props;
         if(error !== prevProps.error){
             if (error.id === 'REGISTER_FAIL') {
                 this.setState({msg:error.msg.msg})
@@ -39,18 +34,7 @@ class RegisterModal extends Component {
                 this.setState({msg: null})
             }
         };
-        if(this.state.modal){
-            if(isAuthenticated){
-                this.toggle();
-            }
-        }
     }
-    toggle = () =>{
-        this.props.clearErrors(); 
-        this.setState({
-            modal:!this.state.modal
-        });
-    };
     onChange = (e) => {
         this.setState({
             [e.target.name]:e.target.value
@@ -68,10 +52,9 @@ class RegisterModal extends Component {
        
     }
     render() {
-        console.log(this.state.msg)
         return(
             <div className = "form">
-                {this.state.msg? <Alert color="danger">{this.state.msg}</Alert>:null}
+                {this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
                 <Form onSubmit ={ this.onSubmit }>
                             <FormGroup>
                                 <Label for = 'name'>Name</Label>
@@ -110,4 +93,4 @@ const mapStateToProps = state => ({
 	error: state.error
 })
 
-export default connect(mapStateToProps ,{ register,clearErrors })(RegisterModal)
+export default connect(mapStateToProps ,{ register,clearErrors })(Register)

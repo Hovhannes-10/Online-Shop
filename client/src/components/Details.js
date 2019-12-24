@@ -12,8 +12,6 @@ import PropTayps from "prop-types";
         if(!item){
             return <div>loading...</div> 
         }
-
-        console.log(this.props);
         const { _id, name, img, price, info,inCart} = item
         return (
             <Fragment>

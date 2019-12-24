@@ -1,6 +1,5 @@
 import React,{ Component, Fragment } from "react";
 import { Link } from "react-router-dom"
-// import styled from 'styled-components'
 import {
     Collapse,
     Navbar,
@@ -12,9 +11,8 @@ import {
 } from 'reactstrap'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import RegisterModal from './auth/registerModal';
-import LoginModal from './auth/loginModal';
-import Logout from './auth/logOut';
+import Logout from './auth/Logout';
+
 class AppNavbar extends Component {
     state = {
         isOpen : false
@@ -27,20 +25,14 @@ class AppNavbar extends Component {
             isOpen: !this.state.isOpen
         })
     }
-    toggelFunction () {
-        // this.props.clearErrors();
-        this.setState({
-            modal:!this.state.modal
-        });
-    }
+    
     render() { 
         const { isAuthenticated, user } = this.props.auth;
-        console.log(this.props.item)
         const authLinks = (
             <Fragment>
                 <NavItem>
                     <span className = "navbar-text">
-                        <strong>{user ? user.name : ''}</strong>
+                        <strong className = "nav-item">{user ? user.name : ''}</strong>
                     </span>
                 </NavItem>
                 <NavItem>
@@ -51,7 +43,6 @@ class AppNavbar extends Component {
         const guestLink =(
             <Fragment>
                 <NavItem >
-                    {/* <RegisterModal/> */}
                     <Link to = '/register'> 
                         <button className = 'button'>register</button>
                      </Link>
@@ -60,8 +51,6 @@ class AppNavbar extends Component {
                     <Link to = '/login'>
                         <button className = 'button'>login</button> 
                     </Link>
-                    {/* <LoginModal /> */}
-
                 </NavItem>
             </Fragment>
         )

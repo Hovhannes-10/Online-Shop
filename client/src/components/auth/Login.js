@@ -12,7 +12,8 @@ import { login } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions"
 import PropTypes from "prop-types"
 import { Link, Redirect } from 'react-router-dom';
-class LoginModal extends Component {
+
+class Login extends Component {
     state = {
         email:"",
         password:"",
@@ -25,7 +26,7 @@ class LoginModal extends Component {
         clearErrors: PropTypes.func.isRequired
     }
     componentDidUpdate(prevProps) {
-        const { error,isAuthenticated } =this.props;
+        const { error } =this.props;
         if(error !== prevProps.error){
             if (error.id === 'LOGIN_FAIL') {
                 this.setState({msg:error.msg.msg})
@@ -46,8 +47,7 @@ class LoginModal extends Component {
             email,
             password
         };
-        this.props.login(user)
-       
+        this.props.login(user)    
     }
     render() {
         return(
@@ -85,4 +85,4 @@ const mapStateToProps = state => ({
 	error: state.error
 })
 
-export default connect(mapStateToProps ,{ login,clearErrors })(LoginModal)
+export default connect(mapStateToProps ,{ login,clearErrors })(Login)

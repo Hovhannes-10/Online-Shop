@@ -55,7 +55,6 @@ export const login =({email , password}) => dispatch => {
     const body = JSON.stringify({ password , email});
     axios.post('/api/auth' ,body, config )
     .then(res => {
-        console.log(res.data);
         dispatch({
             type:LOGIN_SUCCESS,
             payload:res.data
@@ -74,7 +73,6 @@ export const logout = () => {
 }
 export const configToken = getState =>{
     const token = getState().auth.token;
-    console.log(token)
     const config = {
         headers : {
            "Content-type": "application/json"

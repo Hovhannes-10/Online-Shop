@@ -1,20 +1,18 @@
 import React,{Component ,Fragment} from 'react';
-import { Route ,Switch} from 'react-router-dom'
-
+import { Route ,Switch} from 'react-router-dom';
 import AppNavbar from './components/AppNavbar';
 import ShoppingList from "./components/ShoppingList";
-import ItemModal from "./components/itemModal"
+import ItemModal from "./components/itemModal";
 import Detalis from './components/Details';
 import Card from './components/Cart/Cart';
 import Default from './components/Default';
-import RegisterModal from './components/auth/registerModal';
-import LoginModal from './components/auth/loginModal';
-import {loadUser} from "./actions/authActions";
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
+import { loadUser } from "./actions/authActions";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import store from "./store";
 import { getItems } from './actions/itemsActions';
-
 
 class App extends Component {
   componentDidMount() {
@@ -30,15 +28,12 @@ class App extends Component {
             <Route path= '/admin' component = { ItemModal }/> 
             <Route path= '/detalis/:id' component = { Detalis }/>
             <Route path= '/card' component = { Card }/>
-            <Route path = '/register' component = { RegisterModal } />
-            <Route path = '/login' component = { LoginModal } />
-
+            <Route path = '/register' component = { Register } />
+            <Route path = '/login' component = { Login } />
             <Route component = { Default }/>
           </Switch>
         </Fragment>
     )
-  }
- 
+  } 
 }
-
 export default App;
