@@ -58,7 +58,7 @@ class AppNavbar extends Component {
                 </NavItem>
                 <NavItem className="nav-item">
                     <Link to = '/login'>
-                    <button className = 'button'>login</button> 
+                        <button className = 'button'>login</button> 
                     </Link>
                     {/* <LoginModal /> */}
 

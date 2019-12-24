@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,Fragment } from 'react';
 import  styled from "styled-components";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -13,10 +13,35 @@ export class Product extends Component {
     onClick = id => { 
       this.props.addToCart(id);
     }  
+
     render() {
-        // console.log(this.props) 
-        const product = this.props.product
-        const { _id, name, img, price, inCart} = product
+        const product = this.props.product;
+        const { _id, name, img, price, inCart} = product;
+        const authButton = (
+            <Fragment>
+                <button 
+                    className="cart-btn"
+                    disabled={inCart? true: false }
+                    onClick = { this.onClick.bind(this ,_id) }
+                > 
+                    {inCart ? (
+                            <p className="text-capitalize mb-0" disabled>
+                                {" "}
+                                inCart
+                            </p>
+                        ) :(
+                            <span> add to cart<i className="fas fa-cart-plus" /></span> 
+                        )} 
+                </button>
+            </Fragment>                
+        );
+        const guestButton = (
+            <Link to='/login'>
+                <button className="cart-btn"> 
+                        <span> add to cart<i className="fas fa-cart-plus" /></span> 
+                </button>
+            </Link>
+        )
         return (
             <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3"> 
                 <div className="card">
@@ -24,20 +49,8 @@ export class Product extends Component {
                         <Link to = {`/detalis/${_id}`}>
                             <img src = { img } alt="product" className="card-img-top" style = {{width:'100%' ,height: '10rem'}} title="click for more detalis"/> 
                         </Link>
-                        <button 
-                            className="cart-btn"
-                            disabled={inCart? true: false }
-                            onClick = {this.onClick.bind(this ,_id)}
-                        >
-                            {inCart ? (
-                                    <p className="text-capitalize mb-0" disabled>
-                                        {" "}
-                                        inCart
-                                    </p>
-                                ) :(
-                                   <span> add to cart<i className="fas fa-cart-plus" /></span> 
-                                )} 
-                        </button>                                             
+                        {this.props.isAuthenticated ? authButton : guestButton}
+                                                                     
                     </div>
                     <div className="card-footer d-flex justify-content-between">
                         <p className="align-self-center mb-0">{ name }</p>
@@ -54,10 +67,12 @@ export class Product extends Component {
 Product.propTayps = {
     item: PropTayps.object.isRequired,
     addToCart: PropTayps.func.isRequired,
-    getItems: PropTayps.func.isRequired
+    getItems: PropTayps.func.isRequired,
+    isAuthenticated:PropTayps.boll
 }
 const  mapStateToProps = (state) => ({
-    item: state.item
+    item: state.item,
+    isAuthenticated:state.auth.isAuthenticated
 })
 export default connect(mapStateToProps , { addToCart,getItems}) (Product)
 

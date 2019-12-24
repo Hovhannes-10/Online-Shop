@@ -12,6 +12,7 @@ import {
     Alert
 } from 'reactstrap';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom'
 import { register } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions"
 import PropTypes from "prop-types"
@@ -45,7 +46,7 @@ class RegisterModal extends Component {
         }
     }
     toggle = () =>{
-        this.props.clearErrors();
+        this.props.clearErrors(); 
         this.setState({
             modal:!this.state.modal
         });
@@ -67,17 +68,10 @@ class RegisterModal extends Component {
        
     }
     render() {
-        console.log(this.props.toggle)
+        console.log(this.state.msg)
         return(
             <div className = "form">
-                {/* <NavLink onClick = {this.toggle} href = "#">Register</NavLink> */}
-                {/* <Modal isOpen= {this.state.modal} toggle= {this.toggle}>
-                    <ModalHeader toggle= {this.toggle}> Register </ModalHeader>
-                    <ModalBody>
-                        {this.state.msg? <Alert color="danger">{this.state.msg}</Alert>:null}
-                        
-                    </ModalBody>
-                </Modal> */}
+                {this.state.msg? <Alert color="danger">{this.state.msg}</Alert>:null}
                 <Form onSubmit ={ this.onSubmit }>
                             <FormGroup>
                                 <Label for = 'name'>Name</Label>
@@ -103,6 +97,7 @@ class RegisterModal extends Component {
                                 placeholder ="Password"/>
                                 <Button color= 'dark' style ={{marginTop:'2rem' } }block>
                                 Register</Button>
+                                {this.props.isAuthenticated? <Redirect to='/'/>: null } 
                             </FormGroup>
                         </Form>
             </div>

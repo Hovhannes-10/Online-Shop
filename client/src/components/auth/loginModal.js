@@ -1,24 +1,19 @@
 import React,{Component} from 'react';
 import {
     Button,
-    Modal,
-    ModalHeader,
-    ModalBody,
     Form,
     FormGroup,
     Label,
 	Input,
-    NavLink,
     Alert
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { login } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions"
 import PropTypes from "prop-types"
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 class LoginModal extends Component {
     state = {
-        modal: false,
         email:"",
         password:"",
         msg:null
@@ -38,17 +33,6 @@ class LoginModal extends Component {
                 this.setState({msg: null})
             }
         };
-        if(this.state.modal){
-            if(isAuthenticated){
-                this.toggle();
-            }
-        }
-    }
-    toggle = () =>{
-        this.props.clearErrors();
-        this.setState({
-            modal:!this.state.modal
-        });
     };
     onChange = (e) => {
         this.setState({
@@ -67,37 +51,30 @@ class LoginModal extends Component {
     }
     render() {
         return(
-            <div className = 'form'>
-                {/* <NavLink onClick = {this.toggle} href = "#">Login</NavLink>
-
-                <Modal isOpen= {this.state.modal} toggle= {this.toggle}>
-                    <ModalHeader toggle= {this.toggle}> Login </ModalHeader>
-                    <ModalBody>
-                        {this.state.msg? <Alert color="danger">{this.state.msg}</Alert>:null}
-                        
-                    </ModalBody>
-                </Modal> */}
-                        <Form onSubmit ={ this.onSubmit }>
-                            <FormGroup>
-								<Label for = 'email'>Email</Label>
-                                <Input 
-                                onChange = {this.onChange}
-                                name ="email"
-                                type ="email"
-                                id="email"
-                                placeholder ="Email"/>
-								<Label for = 'password'>Password</Label>
-                                <Input 
-                                onChange = {this.onChange}
-                                name ="password"
-                                type ="password"
-                                id="password"
-                                placeholder ="Password"/>
-                                <Button color= 'dark' style ={{marginTop:'2rem' } }block>
-                                Login</Button>
-                            </FormGroup>
-                        </Form>
-                        <Link to ='/register'>Creat an account</Link>
+            <div className = 'form'>  
+                {this.state.msg? <Alert color="danger">{this.state.msg}</Alert>:null}
+                <Form onSubmit ={ this.onSubmit }>
+                    <FormGroup>
+                        <Label for = 'email'>Email</Label>
+                        <Input 
+                        onChange = {this.onChange} 
+                        name ="email"
+                        type ="email"
+                        id="email"
+                        placeholder ="Email"/>
+                        <Label for = 'password'>Password</Label>
+                        <Input 
+                        onChange = {this.onChange}
+                        name ="password"
+                        type ="password"
+                        id="password"
+                        placeholder ="Password"/>
+                        <Button color='dark' style ={{marginTop:'2rem' } }block>
+                        Login</Button> 
+                        {this.props.isAuthenticated? <Redirect to='/'/>: null }    
+                    </FormGroup> 
+                </Form>
+                <Link to ='/register'>Creat an account </Link>
             </div>
             
         )

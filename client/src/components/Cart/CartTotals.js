@@ -1,12 +1,14 @@
 import React,{Fragment, Component} from 'react';
 import { Link } from "react-router-dom";
+import PayPalButton from './PayPalButton'
 
 export default class CartTotals extends Component {
     render(){
         console.log(this.props);
         
         const { cart,total ,clearCart, removeInCart } = this.props.value;
-        let cartTotals = cart.reduce((a, b) => a + b.total ,0)
+        let cartPriceTotals = cart.reduce((a, b) => a + b.total ,0)
+        let cartCountTotals = cart.reduce((a,b)=> a + b.count ,0)
         
         return  <Fragment>
                     <div className="container">
@@ -17,10 +19,10 @@ export default class CartTotals extends Component {
                                         onClick = {clearCart} 
                                     >clear cart</button>
                                 </Link>   
-                                <h5 className='mt-5'> 
-                                total
-                                    <span> $  {cartTotals}</span>
-                                </h5>
+                                <h4 className='mt-4'> total</h4>
+                                <h6><span>total price   {cartPriceTotals} $</span></h6>
+                                <h6><span>total count { cartCountTotals} </span></h6>
+                                <PayPalButton history ={this.props.history} />    
                              </div>
                         </div>
                     </div>

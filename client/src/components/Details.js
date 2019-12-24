@@ -1,19 +1,12 @@
 import React, { Component,Fragment } from 'react';
 import { connect } from 'react-redux';
 import { getItems } from '../actions/itemsActions';
-import {withRouter} from 'react-router-dom'
+import { addToCart } from '../actions/cartActions';
 import { Link } from 'react-router-dom'
 import PropTayps from "prop-types";
 
  class Detalis extends Component {
-    constructor(props ,Context){
-        super(props ,Context)
 
-        this.state = {
-            product:{}
-        }
-    }
-   
     render() {
         const {item} = this.props
         if(!item){
@@ -52,7 +45,7 @@ import PropTayps from "prop-types";
                                 back 
                                 </button>
                                 </Link>
-                                <button className="button" style={{color:"#dc3545"}}
+                                <button className="button" style={{color:"#dc3545"}} onClick = {this.props.addToCart.bind(this , _id)}
                                 disabled ={ inCart ? true:false}
                                 >
                                     { inCart ? " inCart" : "Add to cart" } 
@@ -65,8 +58,11 @@ import PropTayps from "prop-types";
         )
     }
 }
+Detalis.PropTayps = {
+    addToCart: PropTayps.func.isRequired,
+}
 
 const  mapStateToProps = (state ,props) => ({
     item: state.item.items.find(item => item._id === props.match.params.id)
 })
-export default  connect(mapStateToProps, {getItems} )(Detalis)
+export default  connect(mapStateToProps, {getItems ,addToCart} )(Detalis)
